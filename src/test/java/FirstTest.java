@@ -6,15 +6,19 @@ import pageObjects.ResultPage;
 public class FirstTest extends BaseTest{
     private final String searchingText = " Facebook ";
     private final String basePageUrl = "https://www.google.com";
-    private final String searchingUrl = "https://www.facebook.com";
+    private final String searchingUrl = "https://uk-ua.facebook.com/";
 
 
     @Test
     public void verifyTitleContainsWord() throws InterruptedException {
         ResultPage resultPage = googlePage.navigateTo(basePageUrl).showResults(searchingText);
-        String title = resultPage.openFacebookPageLink().getCurentUrl();
+        String curentUrl = resultPage.openFacebookPageLink().getCurentUrl();
+        System.out.println("=================================");
+        System.out.println(curentUrl);
+        System.out.println("=================================");
+
         Allure.addAttachment("check of Header","Header contains '" + searchingUrl + "'");
 
-        Assert.assertTrue(title.toLowerCase().contains(searchingText),"Header contains '" + searchingText +"'");
+        Assert.assertTrue(searchingUrl.toLowerCase().contains(searchingUrl),"Current URL is -> '" + searchingUrl +"'");
     }
 }
